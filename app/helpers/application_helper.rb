@@ -38,9 +38,9 @@ module ApplicationHelper
     return @header_links if @header_links
 
     @header_links = {
-      root_path => { :title => @cur_url == "/" ? Rails.application.name : "Home" },
-      recent_path => { :title => "Recent" },
-      comments_path => { :title => "Comments" },
+      root_path => { :title => @cur_url == "/" ? "Proof of Work" : "Home" },
+      recent_path => { :title => "New" },
+      comments_path => { :title => "Jobs" },
     }
 
     if @user

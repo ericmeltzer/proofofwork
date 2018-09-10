@@ -50,3 +50,7 @@ group :test, :development do
   gem "byebug"
   gem "rb-readline"
 end
+
+group :production do
+  gem "pg"
+end

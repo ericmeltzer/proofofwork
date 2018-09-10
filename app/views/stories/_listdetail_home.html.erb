@@ -1,3 +1,4 @@
+
 <li id="story_<%= story.short_id %>" data-shortid="<%= story.short_id %>"
 class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 <%= story.vote && story.vote[:vote] == -1 ? "downvoted" : "" %>
@@ -15,6 +16,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
   <%= link_to "", login_path, :class => "upvoter" %>
 <% end %>
 <div class="score"></div>
+<span><%= index ? index + 1 : '' %></span>
   </div>
   <div class="details">
     <span class="link">

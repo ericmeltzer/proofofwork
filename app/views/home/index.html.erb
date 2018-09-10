@@ -15,8 +15,9 @@
 <% end %>
 
 <ol class="stories list <%= @cur_url == "/hidden" ? "show_hidden" : "" %>">
-  <%= render :partial => "stories/listdetail", :collection => @stories,
-    :as => :story %>
+<% @stories.each_with_index do |story, index| %>
+  <%= render partial: "stories/listdetail_home",  locals: { story: story, index: index }%>
+  <% end %>
 </ol>
 
 <div class="morelink">
