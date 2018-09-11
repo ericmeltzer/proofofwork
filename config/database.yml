@@ -1,0 +1,27 @@
+development:
+  adapter: postgresql
+  encoding: utf8mb4
+  reconnect: false
+  database: lobsters_dev
+  socket: /tmp/mysql.sock
+  username: root
+  password: 
+  
+test:
+  adapter: mysql2
+  encoding: utf8mb4
+  reconnect: false
+  database: lobsters_test
+  socket: /tmp/mysql.sock
+  username: root
+  password: 
+
+production:
+  adapter: postgresql
+  host: ec2-54-83-4-76.compute-1.amazonaws.com
+  port: 5432
+  encoding: unicode
+  database: d3jim9aeav2ecr
+  username: wvxayxicrtzbum
+  password: 974479d9917948f164501fe15d1ed13c480e5043cbfea4a69a2b1c4681539118
+  #password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
