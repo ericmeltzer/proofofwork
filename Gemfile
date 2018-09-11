@@ -6,6 +6,8 @@ gem "rails", "~> 5.2.0"
 
 gem "mysql2"
 
+gem "sqlite3"
+
 # uncomment to use PostgreSQL
 # gem "pg"
 
