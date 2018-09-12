@@ -9,7 +9,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 <%= story.is_saved_by_cur_user ? "saved" : "" %>
 <%= story.is_expired? ? "expired" : "" %>">
 <div class="story_liner">
-  <div class="voters">
+  <div class="voters" style="width:40px;">
     <div style="float:left;margin-top:2px;"><%= index ? index + 1 : '' %></div>
   <% if @user %>
   <a class="upvoter"></a>
