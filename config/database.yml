@@ -18,10 +18,10 @@ test:
 
 production:
   adapter: postgresql
-  host: ec2-54-83-4-76.compute-1.amazonaws.com
+  host: ec2-54-235-212-58.compute-1.amazonaws.com
   port: 5432
   encoding: unicode
-  database: d3jim9aeav2ecr
-  username: wvxayxicrtzbum
-  password: 974479d9917948f164501fe15d1ed13c480e5043cbfea4a69a2b1c4681539118
+  database: d1tfog4s0pp6d2
+  username: fuipniipowtcus
+  password: 33a12bf72a961ffa7b49a7d26b508530d514412943057da1a58f258b4b856dc1
   #password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
