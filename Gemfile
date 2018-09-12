@@ -39,6 +39,7 @@ gem "sitemap_generator" # for better search engine indexing
 gem 'cowsay'
 
 group :test, :development do
+  gem "sqlite3"
   gem "mysql2"
   gem 'bullet'
   gem 'capybara'
