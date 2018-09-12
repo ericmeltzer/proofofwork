@@ -293,14 +293,15 @@ div#inside {
 }
 
 #l_holder {
+/**	background: url('/assets/work-logo.png');*/
 	background-position: center;
 	float: left;
 	display: block;
-	width: 16px;
-	height: 16px;
 	padding: 1px;
 	margin-left: 4px;
 	margin-right: 11px;
+	max-width:5%;
+	max-height:5%;
 }
 
 #headertitle {
@@ -437,9 +438,10 @@ div.voters .downvoter {
 	width: 0px;
 	height: 0;
 	margin-bottom: 0px;
-	margin-left: 14px;
+	margin-right: 10px;
 	padding: 0;
 	display: block;
+	float: right;
 }
 
 div.voters .upvoter:hover,

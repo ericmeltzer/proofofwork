@@ -10,13 +10,13 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 <%= story.is_expired? ? "expired" : "" %>">
 <div class="story_liner">
   <div class="voters">
+    <div style="float:left;margin-top:2px;"><%= index ? index + 1 : '' %></div>
   <% if @user %>
   <a class="upvoter"></a>
 <% else %>
   <%= link_to "", login_path, :class => "upvoter" %>
 <% end %>
 <div class="score"></div>
-<span><%= index ? index + 1 : '' %></span>
   </div>
   <div class="details">
     <span class="link">
