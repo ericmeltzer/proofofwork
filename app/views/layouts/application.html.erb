@@ -20,8 +20,7 @@
     <link rev="canonical" rel="self alternate shorter shorturl shortlink"
       href="<%= @short_url %>" />
   <% end %>
-  <title><%= @title.present? ? "#{@title} | " : "" %><%=
-    Rails.application.name %></title>
+  <title>Proofofwork</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <% if @user %>
     <%= javascript_include_tag "application" %>
