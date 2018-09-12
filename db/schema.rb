@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_08_30_114325) do
     t.boolean "is_moderated", default: false
     t.boolean "is_from_email", default: false
     t.integer "hat_id"
-    t.index ["comment"], name: "index_comments_on_comment", type: : 
+    t.index ["comment"], name: "index_comments_on_comment" 
     t.index ["confidence"], name: "confidence_idx"
     t.index ["short_id"], name: "short_id", unique: true
     t.index ["story_id", "short_id"], name: "story_id_short_id"
