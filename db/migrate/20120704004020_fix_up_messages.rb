@@ -1,4 +1,4 @@
-class FixUpMessages < ActiveRecord::Migration
+class FixUpMessages < ActiveRecord::Migration[5.2]
   def up
     rename_column :messages, :random_hash, :short_id
 

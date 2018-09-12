@@ -16,12 +16,20 @@ test:
   username: root
   password: 
 
+#production:
+ # adapter: postgresql
+  #host: ec2-54-235-212-58.compute-1.amazonaws.com
+  #port: 5432
+  #encoding: unicode
+  #database: d1tfog4s0pp6d2
+  #username: fuipniipowtcus
+  #password: 33a12bf72a961ffa7b49a7d26b508530d514412943057da1a58f258b4b856dc1
+  #password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 production:
   adapter: postgresql
-  host: ec2-54-235-212-58.compute-1.amazonaws.com
-  port: 5432
+  host: localhost
   encoding: unicode
-  database: d1tfog4s0pp6d2
-  username: fuipniipowtcus
-  password: 33a12bf72a961ffa7b49a7d26b508530d514412943057da1a58f258b4b856dc1
-  #password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  database: <%= REPOSITORY_NAME %>_production
+  username: <%= USER_NAME %>
+  password: <%= USER_PASSWORD %>
+  port: <%= ENV['POSTGRESQL_96_PORT'] %>

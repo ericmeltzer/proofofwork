@@ -1,4 +1,4 @@
-class AddHatToMessage < ActiveRecord::Migration[5.1]
+class AddHatToMessage < ActiveRecord::Migration[5.2]
 
   def change
     add_reference :messages, :hat, index: true
