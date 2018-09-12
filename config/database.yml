@@ -29,7 +29,4 @@ production:
   adapter: postgresql
   host: localhost
   encoding: unicode
-  database: <%= REPOSITORY_NAME %>_production
-  username: <%= USER_NAME %>
-  password: <%= USER_PASSWORD %>
-  port: <%= ENV['POSTGRESQL_96_PORT'] %>
+  database: work-test_production
