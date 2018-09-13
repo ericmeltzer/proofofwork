@@ -129,16 +129,6 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
           <% elsif @user && @user.can_downvote?(story) %>
             | <a class="flagger">flag</a>
           <% end %>
-          <% if story.is_hidden_by_cur_user %>
-            | <%= link_to "unhide", story_unhide_path(story.short_id),
-              :class => "hider" %>
-          <% else %>
-            | <%= link_to "hide", story_hide_path(story.short_id),
-              :class => "hider" %>
-          <% end %>
-          <% if defined?(single_story) && single_story && story.hider_count > 0 %>
-            (hidden by <%= pluralize(story.hider_count, "user") %>)
-          <% end %>
           <% if story.is_saved_by_cur_user %>
             | <%= link_to "unsave", story_unsave_path(story.short_id),
               :class => "saver" %>
@@ -153,7 +143,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
             |
             <a href="<%= story.comments_path %>">
             <% if story.comments_count == 0 %>
-              no comments
+              comments
             <% else %>
               <%= story.comments_count %>
                 comment<%= story.comments_count == 1 ? "" : "s" %>

@@ -120,7 +120,7 @@ class Story < ApplicationRecord
     wp.me ➡.ws ✩.ws x.co yep.it yourls.org zip.net }.freeze
 
   # URI.parse is not very lenient, so we can't use it
-  URL_RE = /\A(?<protocol>https?):\/\/(?<domain>([^\.\/]+\.)+[a-z]+)(?<port>:\d+)?(\/|\z)/i
+  URL_RE = /\A(?<domain>([^\.\/]+\.)+[a-z]+)(?<port>:\d+)?(\/|\z)/i
 
   # Dingbats, emoji, and other graphics https://www.unicode.org/charts/
   GRAPHICS_RE = /[\u{0000}-\u{001F}\u{2190}-\u{27BF}\u{1F000}-\u{1F9FF}]/
@@ -141,7 +141,7 @@ class Story < ApplicationRecord
     if self.url.present?
       check_already_posted
       check_not_tracking_domain
-      errors.add(:url, "is not valid") unless url.match(URL_RE)
+      # errors.add(:url, "is not valid") unless url.match(URL_RE)
     elsif self.description.to_s.strip == ""
       errors.add(:description, "must contain text if no URL posted")
     end
@@ -158,7 +158,7 @@ class Story < ApplicationRecord
       self.user_is_author = true
     end
 
-    check_tags
+    # check_tags
   end
 
   def check_already_posted
@@ -796,16 +796,16 @@ class Story < ApplicationRecord
   def url=(u)
     super(u.try(:strip)) or return if u.blank?
 
-    if (match = u.match(URL_RE))
-      # remove well-known port for http and https if present
-      @url_port = match[:port]
-      if match[:protocol] == 'http'  && match[:port] == ':80' ||
-         match[:protocol] == 'https' && match[:port] == ':443'
-        u = u[0...match.begin(3)] + u[match.end(3)..-1]
-        @url_port = nil
-      end
-    end
-    set_domain match
+    # if (match = u.match(URL_RE))
+    #   # remove well-known port for http and https if present
+    #   @url_port = match[:port]
+    #   if match[:protocol] == 'http'  && match[:port] == ':80' ||
+    #      match[:protocol] == 'https' && match[:port] == ':443'
+    #     u = u[0...match.begin(3)] + u[match.end(3)..-1]
+    #     @url_port = nil
+    #   end
+    # end
+    # set_domain match
 
     # strip out stupid google analytics parameters
     if (match = u.match(/\A([^\?]+)\?(.+)\z/))
@@ -828,11 +828,19 @@ class Story < ApplicationRecord
   end
 
   def url_or_comments_path
-    self.url.presence || self.comments_path
+    if self.url.present?
+      self.url.include?("http") ? self.url : "http://" + self.url
+    elsif
+      self.comments_path
+    end 
   end
 
   def url_or_comments_url
-    self.url.presence || self.comments_url
+    if self.url.present?
+      self.url.include?("http") ? self.url : "http://" + self.url
+    elsif
+      self.comments_url
+    end 
   end
 
   def vote_summary_for(user)
