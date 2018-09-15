@@ -17,7 +17,10 @@
     <% end %>
     </div>
   <% end %>
-
+<div class="boxline">
+<label class="required" for="story_url">&nbsp;&nbsp;</label>
+  Leave url blank to submit a question for discussion. If there is no url, your text description will appear at the top of the thread.
+</div>
   <div class="boxline">
     <%= f.label :title, "Title:", :class => "required" %>
     <%= f.text_field :title, :maxlength => 100 %>
@@ -82,9 +85,7 @@
   <% unless defined?(suggesting) %>
     <div class="boxline">
       <%= f.label :description, "Text:", :class => "required" %>
-      <%= f.text_area :description, :rows => 15, :placeholder => "Optional when submitting a URL.
-Not for summarizing the post or personal opinions.
-See the guidelines below." %>
+      <%= f.text_area :description, :rows => 15, :placeholder => "If you don't include a URL, text here will appear at the top of the thread as a topic for discussion." %>
     </div>
 
     <div class="boxline actions markdown_help_toggler">
