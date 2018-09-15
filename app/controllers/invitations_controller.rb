@@ -46,9 +46,9 @@ class InvitationsController < ApplicationController
     i.memo = params[:memo]
 
     begin
-      logger.debug "=========== start save invitation"
+      logger.info "=========== start save invitation"
       i.save!
-      logger.debug "==========begin send email"
+      logger.info "==========begin send email"
       i.send_email
       flash[:success] = "Successfully e-mailed invitation to " <<
                         params[:email].to_s << "."

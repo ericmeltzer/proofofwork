@@ -3,7 +3,7 @@ class InvitationMailer < ActionMailer::Base
 
   def invitation(invitation)
     @invitation = invitation
-
+logger.info "========== invitation: " + invitation
     mail(
       to: invitation.email,
       subject: "[#{Rails.application.name}] You are invited to join " <<
