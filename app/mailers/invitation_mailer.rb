@@ -1,13 +1,14 @@
 class InvitationMailer < ActionMailer::Base
-  default :from => "#{Rails.application.name} <nobody@#{Rails.application.domain}>"
+  default :from => "Proofofwork <shanhua2011@gmail.com>"
 
   def invitation(invitation)
+
     @invitation = invitation
-logger.info "========== invitation: " + invitation
+logger.info "========== invitation: " 
     mail(
       to: invitation.email,
-      subject: "[#{Rails.application.name}] You are invited to join " <<
-               Rails.application.name
+      subject: "Proofofwork] You are invited to join " <<
+               "Proofofwork"
     )
   end
 end

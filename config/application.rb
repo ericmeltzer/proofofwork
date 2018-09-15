@@ -2,6 +2,11 @@ require_relative 'boot'
 
 # included from https://github.com/rails/rails/blob/5-2-stable/railties/lib/rails/all.rb
 require 'rails'
+require 'net/http'
+
+require 'openssl'
+
+require 'resolv-replace'
 
 %w(
   active_record/railtie

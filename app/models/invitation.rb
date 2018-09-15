@@ -28,7 +28,9 @@ class Invitation < ApplicationRecord
   end
 
   def send_email
-    logger.debug "begin send email"
-    InvitationMailer.invitation(self).deliver_now
+    logger.debug "====== begin send email"
+    mail = InvitationMailer.invitation(self)
+    logger.info "!!!!!!!!!!!!! test mail"
+    mail.deliver_now
   end
 end
