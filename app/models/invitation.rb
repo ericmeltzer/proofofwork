@@ -28,6 +28,7 @@ class Invitation < ApplicationRecord
   end
 
   def send_email
+    logger.debug "begin send email"
     InvitationMailer.invitation(self).deliver_now
   end
 end
