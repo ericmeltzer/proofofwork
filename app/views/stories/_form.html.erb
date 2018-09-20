@@ -3,8 +3,8 @@
 
 <div class="box">
   <% unless defined?(suggesting) %>
+  <% if f.object.url_is_editable_by_user?(@user) %>
     <div class="boxline">
-    <% if f.object.url_is_editable_by_user?(@user) %>
       <%= f.label :url, "URL:", :class => "required" %>
       <%= f.text_field :url, :autocomplete => "off" %>
       <%= button_tag "Fetch Title", :id => "story_fetch_title",
@@ -14,13 +14,14 @@
       <div class="d">
       <a href="<%= f.object.url %>"><%= f.object.url %></a>
       </div>
-    <% end %>
+
     </div>
+    <% end %>
   <% end %>
-<div class="boxline">
-<label class="required" for="story_url">&nbsp;&nbsp;</label>
-  Leave url blank to submit a question for discussion. If there is no url, your text description will appear at the top of the thread.
-</div>
+  <div class="boxline">
+  <label class="required" for="story_url">&nbsp;&nbsp;</label>
+    Leave url blank to submit a question for discussion. If there is no url, your text description will appear at the top of the thread.
+  </div>
   <div class="boxline">
     <%= f.label :title, "Title:", :class => "required" %>
     <%= f.text_field :title, :maxlength => 100 %>

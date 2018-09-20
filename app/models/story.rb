@@ -820,7 +820,7 @@ class Story < ApplicationRecord
   def url_is_editable_by_user?(user)
     if self.new_record?
       true
-    elsif user && user.is_moderator? && self.url.present?
+    elsif user && user.is_moderator?# && self.url.present?
       true
     else
       false
@@ -830,7 +830,7 @@ class Story < ApplicationRecord
   def url_or_comments_path
     if self.url.present?
       self.url.include?("http") ? self.url : "http://" + self.url
-    elsif
+    else
       self.comments_path
     end 
   end
@@ -838,7 +838,7 @@ class Story < ApplicationRecord
   def url_or_comments_url
     if self.url.present?
       self.url.include?("http") ? self.url : "http://" + self.url
-    elsif
+    else
       self.comments_url
     end 
   end
