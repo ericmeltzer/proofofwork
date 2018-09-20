@@ -90,7 +90,7 @@ class << Rails.application
   end
 
   def domain
-    "proofofwork.herokuapp.com"
+    "herokuapp.com"
   end
 
   def name
