@@ -90,11 +90,11 @@ class << Rails.application
   end
 
   def domain
-    "example.com"
+    "proofofwork.herokuapp.com"
   end
 
   def name
-    "ProofofWork"
+    "Proof of Work"
   end
 
   # to force everyone to be considered logged-out (without destroying
