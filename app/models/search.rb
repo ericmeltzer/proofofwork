@@ -63,6 +63,7 @@ class Search
 
   def with_stories_in_domain(base, domain)
     begin
+      Rails.logger.info "&&&&&&&&&&&&& base: #{base}, ~~~~~~~~~~ #{domain}"
       reg = Regexp.new("//([^/]*\.)?#{domain}/")
       base.where("`stories`.`url` REGEXP '" +
         ActiveRecord::Base.connection.quote_string(reg.source) + "'")
@@ -94,13 +95,14 @@ class Search
     }.join(" ")
 
     qwords = ActiveRecord::Base.connection.quote_string(words)
-Rails.logger.info "^^^^^^^^^^^^^^ qwords: #{qwords}"
+Rails.logger.info "^^^^^^^^^^^^^^ qwords: #{qwords}, domain: #{domain}"
     base = nil
 
     case self.what
     when "stories"
       base = Story.unmerged.where(:is_expired => false)
       if domain.present?
+        Rails.logger.info "$$$$$$$$$$$$$$$$$ isDomain: #{domain}"
         base = with_stories_in_domain(base, domain)
       end
 
@@ -119,8 +121,10 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
         )
 
         if tag_scopes.present?
+          Rails.logger.info "~~~~~~~~~~~~~~~ has tag_scopes "
           self.results = with_tags(base, tag_scopes)
         else
+          Rails.logger.info "~~~~~~~~~~~~~~~ has not tag_scopes "
           base = base.includes({ :taggings => :tag }, :user)
           self.results = base.select(
             ["stories.*", title_match_sql, description_match_sql, story_cache_match_sql].join(', ')
@@ -179,7 +183,7 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
         self.results.order!("#{Comment.score_sql} DESC")
       end
     end
-Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments"
+Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments. lenght: #{self.results.length}"
     self.total_results = self.results.length
 
     if self.page > self.page_count
@@ -192,7 +196,7 @@ Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments"
     self.results = self.results
       .limit(self.per_page)
       .offset((self.page - 1) * self.per_page)
-    Rails.logger.info "%%%%%%%%%%%%%%%%%5 begin search"
+    Rails.logger.info "%%%%%%%%%%%%%%%%%5 begin search, What: #{what}"
     # if a user is logged in, fetch their votes for what's on the page
     if user
       case what
@@ -214,6 +218,7 @@ Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments"
           end
         end
       end
+      Rails.logger.debug "_________________________ size: #{results.size}"
     end
 
   rescue ActiveRecord::StatementInvalid
