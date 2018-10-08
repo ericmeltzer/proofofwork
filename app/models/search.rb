@@ -109,9 +109,9 @@ class Search
         Arel.sql("MATCH(stories.description) AGAINST('#{qwords}' IN BOOLEAN MODE)")
       story_cache_match_sql =
         Arel.sql("MATCH(stories.story_cache) AGAINST('#{qwords}' IN BOOLEAN MODE)")
-logger.info "@@@@@@@@@@@@@@@@@@ begin search"
+Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
       if qwords.present?
-        logger.info "@@@@@@@@@@@@ qwords present"
+        Rails.logger.info "@@@@@@@@@@@@ qwords present"
         base.where!(
           "(#{title_match_sql} OR " +
           "#{description_match_sql} OR " +
@@ -187,7 +187,7 @@ logger.info "@@@@@@@@@@@@@@@@@@ begin search"
     self.results = self.results
       .limit(self.per_page)
       .offset((self.page - 1) * self.per_page)
-    logger.info "#################33 result: " + self.results
+    Rails.logger.info "#################33 result: #{self.results}"
 
     # if a user is logged in, fetch their votes for what's on the page
     if user
