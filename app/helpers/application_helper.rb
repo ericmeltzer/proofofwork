@@ -38,7 +38,7 @@ module ApplicationHelper
     return @header_links if @header_links
 
     @header_links = {
-      root_path => { :title => @cur_url == "/" ? "Proof of Work" : "Home" },
+      root_path => { :title =>  "Proof of Work"  },
       recent_path => { :title => "New" },
       "http://commonapp.proofofwork.news" => { :title => "Jobs" },
     }
