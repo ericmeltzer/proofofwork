@@ -52,6 +52,7 @@
   </div>
 
   <ol class="search_results">
+  <span> size: <%= @search.results.size() %></span>
     <% @search.results.each do |res| %>
       <% if res.class == Story %>
         <%= render :partial => "stories/listdetail",
