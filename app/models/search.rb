@@ -184,11 +184,10 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
     if self.page < 1
       self.page = 1
     end
-
+    Rails.logger.info "#################33 result: #{self.results}, total_results: #{total_results}"
     self.results = self.results
       .limit(self.per_page)
       .offset((self.page - 1) * self.per_page)
-    Rails.logger.info "#################33 result: #{self.results}"
 
     # if a user is logged in, fetch their votes for what's on the page
     if user
