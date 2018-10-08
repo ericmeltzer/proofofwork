@@ -106,11 +106,11 @@ Rails.logger.info "^^^^^^^^^^^^^^ qwords: #{qwords}, domain: #{domain}"
         base = with_stories_in_domain(base, domain)
       end
 
-      title_match_sql = Arel.sql("MATCH(stories.title) AGAINST('#{qwords}' IN BOOLEAN MODE)")
+      title_match_sql =  Arel.sql("stories.title like '%#{qwords}%'")
       description_match_sql =
-        Arel.sql("MATCH(stories.description) AGAINST('#{qwords}' IN BOOLEAN MODE)")
+      Arel.sql("stories.description like '%test%'")
       story_cache_match_sql =
-        Arel.sql("MATCH(stories.story_cache) AGAINST('#{qwords}' IN BOOLEAN MODE)")
+      Arel.sql("stories.story_cache like '%test%'")
 Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
       if qwords.present?
         Rails.logger.info "@@@@@@@@@@@@ qwords present"
@@ -183,7 +183,7 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
         self.results.order!("#{Comment.score_sql} DESC")
       end
     end
-Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments. lenght: #{self.results.length}"
+Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments. lenght: #{self.results.size}"
     self.total_results = self.results.length
 
     if self.page > self.page_count
