@@ -106,8 +106,8 @@ class Search
 
       title_match_sql =  Arel.sql("stories.title like '%#{qwords}%'")
 
-      description_match_sql = Arel.sql("stories.description like '%test%'")
-      story_cache_match_sql = Arel.sql("stories.story_cache like '%test%'")
+      description_match_sql = Arel.sql("stories.description like '%#{qwords}%'")
+      story_cache_match_sql = Arel.sql("stories.story_cache like '%#{qwords}%'")
 
       if qwords.present?
         base.where!(
