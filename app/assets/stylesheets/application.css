@@ -25,12 +25,12 @@ body {
 }
 
 a {
-	color: #2562dc;
+	color: #333;
 	cursor: pointer;
 }
 
 li.story div.details span.link a:visited {
-	color: #7395d9;
+	color: #777;
 }
 
 h1 {
