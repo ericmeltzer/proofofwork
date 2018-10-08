@@ -104,11 +104,10 @@ class Search
         base = with_stories_in_domain(base, domain)
       end
 
-      title_match_sql = Arel.sql("MATCH(stories.title) AGAINST('#{qwords}' IN BOOLEAN MODE)")
-      description_match_sql =
-        Arel.sql("MATCH(stories.description) AGAINST('#{qwords}' IN BOOLEAN MODE)")
-      story_cache_match_sql =
-        Arel.sql("MATCH(stories.story_cache) AGAINST('#{qwords}' IN BOOLEAN MODE)")
+      title_match_sql =  Arel.sql("stories.title like '%#{qwords}%'")
+
+      description_match_sql = Arel.sql("stories.description like '%test%'")
+      story_cache_match_sql = Arel.sql("stories.story_cache like '%test%'")
 
       if qwords.present?
         base.where!(
@@ -135,13 +134,13 @@ class Search
 
       case self.order
       when "relevance"
-        if qwords.present?
-          self.results.order!(Arel.sql("((#{title_match_sql}) * 2) DESC, " +
-                                       "((#{description_match_sql}) * 1.5) DESC, " +
-                                       "(#{story_cache_match_sql}) DESC"))
-        else
+        # if qwords.present?
+        #   self.results.order!(Arel.sql("((#{title_match_sql}) * 2) DESC, " +
+        #                                "((#{description_match_sql}) * 1.5) DESC, " +
+        #                                "(#{story_cache_match_sql}) DESC"))
+        # else
           self.results.order!("stories.created_at DESC")
-        end
+        # end
       when "newest"
         self.results.order!("stories.created_at DESC")
       when "points"
@@ -157,11 +156,11 @@ class Search
         base = with_stories_matching_tags(base, tag_scopes)
       end
       if qwords.present?
-        base = base.where(Arel.sql("MATCH(comment) AGAINST('#{qwords}' IN BOOLEAN MODE)"))
+        base = base.where(Arel.sql("comment like '%#{qwords}%'"))
       end
       self.results = base.select(
         "comments.*, " +
-        "MATCH(comment) AGAINST('#{qwords}' IN BOOLEAN MODE) AS rel_comment"
+        "comment AS rel_comment"
       ).includes(:user, :story)
 
       case self.order
