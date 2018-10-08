@@ -140,10 +140,12 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
       case self.order
       when "relevance"
         if qwords.present?
+          Rails.logger.info "!!!!!!!!!!!!!! order if "
           self.results.order!(Arel.sql("((#{title_match_sql}) * 2) DESC, " +
                                        "((#{description_match_sql}) * 1.5) DESC, " +
                                        "(#{story_cache_match_sql}) DESC"))
         else
+          Rails.logger.info "!!!!!!!!!!!!!! order desc "
           self.results.order!("stories.created_at DESC")
         end
       when "newest"
@@ -177,7 +179,7 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
         self.results.order!("#{Comment.score_sql} DESC")
       end
     end
-
+Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments"
     self.total_results = self.results.length
 
     if self.page > self.page_count
