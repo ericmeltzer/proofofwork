@@ -180,7 +180,7 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
       end
     end
 Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments"
-    self.total_results = self.results.length
+    # self.total_results = self.results.length
 
     if self.page > self.page_count
       self.page = self.page_count
