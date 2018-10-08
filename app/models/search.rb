@@ -129,8 +129,10 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
         Rails.logger.info "@@@@@@@@@@@@@@@@@@@@ result: #{self.results}, order: #{self.order}"
       else
         if tag_scopes.present?
+          Rails.logger.info "!!!!!!!!!! tag_scopes if"
           self.results = with_tags(base, tag_scopes)
         else
+          Rails.logger.info "!!!!!!!!!! tag_scopes else"
           self.results = base.includes({ :taggings => :tag }, :user)
         end
       end
