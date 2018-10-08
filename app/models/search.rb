@@ -94,7 +94,7 @@ class Search
     }.join(" ")
 
     qwords = ActiveRecord::Base.connection.quote_string(words)
-
+Rails.logger.info "^^^^^^^^^^^^^^ qwords: #{qwords}"
     base = nil
 
     case self.what
@@ -126,7 +126,7 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
             ["stories.*", title_match_sql, description_match_sql, story_cache_match_sql].join(', ')
           )
         end
-        Rails.logger.info "@@@@@@@@@@@@@@@@@@@@ result: #{self.results}, order: #{self.order}"
+        Rails.logger.info "@@@@@@@@@@@@@@@@@@@@ base: #{base}, result: #{self.results}, order: #{self.order}"
       else
         if tag_scopes.present?
           Rails.logger.info "!!!!!!!!!! tag_scopes if"
@@ -180,7 +180,7 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
       end
     end
 Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$ after comments"
-    # self.total_results = self.results.length
+    self.total_results = self.results.length
 
     if self.page > self.page_count
       self.page = self.page_count
