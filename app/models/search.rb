@@ -145,9 +145,9 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
       when "relevance"
         if qwords.present?
           Rails.logger.info "!!!!!!!!!!!!!! order if "
-          self.results.order!(Arel.sql("((#{title_match_sql}) * 2) DESC, " +
-                                       "((#{description_match_sql}) * 1.5) DESC, " +
-                                       "(#{story_cache_match_sql}) DESC"))
+          self.results.order!(Arel.sql("title DESC, " +
+                                       "description DESC, " +
+                                       "story DESC"))
         else
           Rails.logger.info "!!!!!!!!!!!!!! order desc "
           self.results.order!("stories.created_at DESC")
