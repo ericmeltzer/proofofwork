@@ -126,6 +126,7 @@ Rails.logger.info "@@@@@@@@@@@@@@@@@@ begin search"
             ["stories.*", title_match_sql, description_match_sql, story_cache_match_sql].join(', ')
           )
         end
+        Rails.logger.info "@@@@@@@@@@@@@@@@@@@@ result: #{self.results}, order: #{self.order}"
       else
         if tag_scopes.present?
           self.results = with_tags(base, tag_scopes)
