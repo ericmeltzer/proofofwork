@@ -104,10 +104,10 @@ class Search
         base = with_stories_in_domain(base, domain)
       end
 
-      title_match_sql =  Arel.sql("stories.title like '%#{qwords}%'")
+      title_match_sql =  Arel.sql("stories.title ilike '%#{qwords}%'")
 
-      description_match_sql = Arel.sql("stories.description like '%#{qwords}%'")
-      story_cache_match_sql = Arel.sql("stories.story_cache like '%#{qwords}%'")
+      description_match_sql = Arel.sql("stories.description ilike '%#{qwords}%'")
+      story_cache_match_sql = Arel.sql("stories.story_cache ilike '%#{qwords}%'")
 
       if qwords.present?
         base.where!(
@@ -156,7 +156,7 @@ class Search
         base = with_stories_matching_tags(base, tag_scopes)
       end
       if qwords.present?
-        base = base.where(Arel.sql("comment like '%#{qwords}%'"))
+        base = base.where(Arel.sql("comment ilike '%#{qwords}%'"))
       end
       self.results = base.select(
         "comments.*, " +
