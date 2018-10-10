@@ -202,6 +202,44 @@ input[type="submit"]:hover {
 	background-color: #e6e6e6;
 }
 
+input[type="radio"]{
+    position:relative;
+    margin:0 !important;
+}
+input[type="radio"]:after{
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: -1px;
+    top: -1px;
+    display: block;
+    width: 13px;
+    height: 13px;
+    background-color: #FFF;
+    border-width: 1px;
+    border-color: #d5d5d5;
+    border-radius: 50%;
+    border-style: solid;
+    box-shadow: 0 0.5px 1px #d5d5d5 inset;
+}
+input[type="radio"]:checked:after{
+    background-color: #479CF8;
+    border-color: #479CF8;
+    box-shadow: none;
+}
+input[type="radio"]:checked:before{
+    content: "";
+    position: absolute;
+    z-index: 3;
+    left: 4px;
+    top: 4px;
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+
 select {
 	margin-top: 3px;
 	min-width: 100px;
@@ -300,8 +338,6 @@ div#inside {
 	padding: 1px;
 	margin-left: 4px;
 	margin-right: 11px;
-	max-width:5%;
-	max-height:5%;
 }
 
 #headertitle {
@@ -319,9 +355,15 @@ div#inside {
 	padding-left: 0.45em;
 }
 
+#headerleft .headerlinks{
+    display: inline-block;
+    padding-top:17px;
+}
+
 #headerright {
 	float: right;
 	text-align: right;
+	padding-top:15px;
 }
 
 #headerright .headerlinks a {
