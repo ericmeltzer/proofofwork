@@ -39,23 +39,15 @@ module ApplicationHelper
 
     @header_links = {
       root_path => { :title =>  "Proof of Work"  },
-      recent_path => { :title => "New" },
-      "http://commonapp.proofofwork.news" => { :title => "Jobs" },
+      recent_path => { :title => "new" },
+      "http://commonapp.proofofwork.news" => { :title => "jobs" },
     }
 
-    if @user
-      @header_links[threads_path] = { :title => "Your Threads" }
-    end
+    @header_links[search_path] = { :title => "search" }
 
     if @user && @user.can_submit_stories?
-      @header_links[new_story_path] = { :title => "Submit Story" }
+      @header_links[new_story_path] = { :title => "submit" }
     end
-
-    if @user
-      @header_links[saved_path] = { :title => "Saved" }
-    end
-
-    @header_links[search_path] = { :title => "Search" }
 
     @header_links.each do |k, v|
       v[:class] ||= []
@@ -74,27 +66,19 @@ module ApplicationHelper
     @right_header_links = {}
 
     if @user
-      if (count = @user.unread_replies_count) > 0
-        @right_header_links[replies_unread_path] = {
-          :class => ["new_messages"],
-          :title => "#{@user.unread_replies_count} Reply".pluralize(count),
-        }
-      else
-        @right_header_links[replies_path] = { :title => "Replies" }
-      end
 
       if (count = @user.unread_message_count) > 0
         @right_header_links[messages_path] = {
           :class => ["new_messages"],
-          :title => "#{@user.unread_message_count} Message".pluralize(count),
+          :title => "#{@user.unread_message_count} message".pluralize(count),
         }
       else
-        @right_header_links[messages_path] = { :title => "Messages" }
+        @right_header_links[messages_path] = { :title => "messages" }
       end
 
       @right_header_links[settings_path] = { :title => "#{@user.username} (#{@user.karma})" }
     else
-      @right_header_links[login_path] = { :title => "Login" }
+      @right_header_links[login_path] = { :title => "login" }
     end
 
     @right_header_links.each do |k, v|
