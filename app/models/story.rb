@@ -81,7 +81,7 @@ class Story < ApplicationRecord
   }
 
   validates :title, length: { :in => 3..150 }
-  validates :description, length: { :maximum => (64 * 1024) }
+  validates :description, length: { :maximum => (128 * 1024) }
   validates :url, length: { :maximum => 250, :allow_nil => true }
   validates :user_id, presence: true
 
